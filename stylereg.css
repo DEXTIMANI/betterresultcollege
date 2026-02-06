@@ -1,0 +1,102 @@
+body {
+  font-family: Poppins, sans-serif;
+  background: #f0f6ff;
+  margin: 0;
+  padding: 0;
+}
+
+/* HERO SECTION */
+.hero {
+  text-align: center;
+  padding: 40px;
+  background: #0d6efd;
+  color: white;
+  position: relative;
+}
+
+.logo {
+  width: 110px;
+  margin-bottom: 10px;
+}
+
+.hero-img {
+  width: 100%;
+  margin-top: 25px;
+  border-radius: 12px;
+}
+
+.hero-btn {
+  padding: 12px 25px;
+  border: none;
+  background: #25d366;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  margin-top: 15px;
+}
+
+/* FORM CONTAINER */
+.form-container {
+  max-width: 500px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+/* FORM ELEMENTS */
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #cbd4e1;
+}
+
+input[type="file"] {
+  padding: 6px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  margin-top: 12px;
+}
+
+#prevBtn {
+  background: #6c757d;
+  color: white;
+}
+
+#nextBtn {
+  background: #0d6efd;
+  color: white;
+}
+
+/* PREVIEW IMAGE */
+#previewImg {
+  width: 120px;
+  margin-top: 10px;
+  display: none;
+}
+
+/* HIDE TABS */
+.tab {
+  display: none;
+}
+
+/* TAB TITLES */
+.tab h3 {
+  color: #0078ff;
+  text-align: center;
+}
+
+/* STEP BUTTONS CONTAINER */
+.step-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Better Result College | Registration Portal</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    /* ===========================
+       CSS STYLING
+    =========================== */
+    :root {
+      --primary-blue: #0d6efd;
+      --whatsapp-green: #25d366;
+      --light-bg: #f0f6ff;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light-bg);
+      margin: 0; padding: 0;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--primary-blue);
+      color: white;
+      border-bottom: 5px solid #0a58ca;
+    }
+
+    .logo {
+      width: 180px; /* Increased size */
+      height: auto;
+      margin-bottom: 20px;
+      filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.2)); /* Makes logo pop */
+    }
+
+    .hero h1 { margin: 10px 0; font-size: 2.5rem; font-weight: 800; }
+    .hero p { font-size: 1.2rem; opacity: 0.9; }
+
+    .hero-img {
+      max-width: 500px;
+      width: 90%;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .hero-btn {
+      padding: 18px 45px;
+      border: none;
+      background: var(--whatsapp-green);
+      color: white;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .hero-btn:hover { transform: translateY(-3px); background: #21be5b; }
+
+    /* FORM SECTION */
+    #formSection { display: none; padding-bottom: 50px; }
+
+    .form-container {
+      max-width: 550px;
+      margin: -40px auto 30px;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden; /* For slide effect */
+    }
+
+    .progress-container {
+      width: 100%; background: #e9ecef; height: 8px; border-radius: 10px; margin-bottom: 25px;
+    }
+    #progressBar {
+      height: 100%; width: 0%; background: var(--primary-blue); border-radius: 10px; transition: width 0.4s ease;
+    }
+
+    /* SLIDE EFFECTS */
+    .tab { 
+      display: none; 
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    label { font-weight: bold; font-size: 14px; color: #555; display: block; margin-top: 10px; }
+    input, select {
+      width: 100%; padding: 12px; margin: 8px 0 15px 0;
+      border-radius: 8px; border: 1px solid #cbd4e1; font-size: 15px; box-sizing: border-box;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--primary-blue); border-width: 2px; }
+
+    .tab h3 { color: var(--primary-blue); text-align: center; margin-bottom: 20px; font-size: 1.4rem; }
+
+    .step-buttons { display: flex; justify-content: space-between; margin-top: 25px; }
+    .btn { padding: 14px 25px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; flex: 1; margin: 0 5px; transition: 0.3s; }
+    #prevBtn { background: #6c757d; color: white; }
+    #nextBtn { background: var(--primary-blue); color: white; }
+    .btn:hover { opacity: 0.9; }
+
+    #previewImg { width: 120px; height: 120px; object-fit: cover; margin-top: 10px; border-radius: 8px; border: 2px solid var(--primary-blue); display: none; }
+  </style>
+</head>
+<body>
+
+<header class="hero" id="hero">
+  <img src="images/logo.jpg" class="logo" alt="Better Result College Logo">
+  <h1>BETTER RESULT COLLEGE</h1>
+  <p>Standardized Online Registration Portal</p>
+  <button id="startBtn" class="hero-btn">Start Registration Now</button>
+  <br>
+  <img src="images/reg.jpg" class="hero-img" alt="Registration Portal">
+</header>
+
+<section id="formSection">
+  <div class="form-container">
+    <div class="progress-container"><div id="progressBar"></div></div>
+
+    <form id="regForm" onsubmit="return false">
+
+      <div class="tab">
+        <h3>1. Personal Information</h3>
+        <label>Full Name</label>
+        <input placeholder="Surname Firstname" id="name" required>
+        <label>Date of Birth</label>
+        <input type="date" id="dob" required>
+        <label>Gender</label>
+        <select id="gender" required>
+          <option disabled selected value="">Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+        <label>Phone Number</label>
+        <input placeholder="0912 5802791" id="phone" type="tel" required>
+        <label>Email Address</label>
+        <input placeholder="betterresultcollege1@gmail.com" id="email" type="email">
+      </div>
+
+      <div class="tab">
+        <h3>2. Address & Background</h3>
+        <label>Home Address</label>
+        <input placeholder="Street Address, City" id="address" required>
+        <label>State of Origin</label>
+        <select id="state" required>
+          <option disabled selected value="">Select State</option>
+          <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option>
+          <option>Anambra</option><option>Bauchi</option><option>Bayelsa</option>
+          <option>Benue</option><option>Borno</option><option>Cross River</option>
+          <option>Delta</option><option>Ebonyi</option><option>Edo</option>
+          <option>Ekiti</option><option>Enugu</option><option>FCT - Abuja</option>
+          <option>Gombe</option><option>Imo</option><option>Jigawa</option>
+          <option>Kaduna</option><option>Kano</option><option>Katsina</option>
+          <option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+          <option>Lagos</option><option>Nasarawa</option><option>Niger</option>
+          <option>Ogun</option><option>Ondo</option><option>Osun</option>
+          <option>Oyo</option><option>Plateau</option><option>Rivers</option>
+          <option>Sokoto</option><option>Taraba</option><option>Yobe</option>
+          <option>Zamfara</option>
+        </select>
+        <label>Local Government Area (LGA)</label>
+        <input placeholder="Enter LGA" id="lga" required>
+        <label>Religion</label>
+        <select id="religion" required>
+          <option disabled selected value="">Select Religion</option>
+          <option>Christianity</option><option>Islam</option><option>Others</option>
+        </select>
+      </div>
+
+      <div class="tab">
+        <h3>3. Academic Information</h3>
+        <label>Class Applying For</label>
+        <select id="class" required>
+          <option disabled selected value="">Select Class</option>
+          <option>JSS1</option><option>JSS2</option><option>JSS3</option>
+          <option>SS1</option><option>SS2</option><option>SS3</option>
+        </select>
+        <label>Preferred Program</label>
+        <select id="course" required>
+          <option disabled selected value="">Select Program</option>
+          <option>Science</option><option>Arts</option><option>Commercial</option>
+        </select>
+      </div>
+
+      <div class="tab">
+        <h3>4. Document Uploads</h3>
+        <label>Passport Photo (Required)</label>
+        <input type="file" id="passport" accept="image/*" required>
+        <center><img id="previewImg" src=""></center>
+        <br>
+        <label>Previous School Results (Optional)</label>
+        <input type="file" id="results" accept=".pdf,.doc,.docx">
+      </div>
+
+      <div class="tab">
+        <h3>5. Final Confirmation</h3>
+        <p style="text-align: center;">You have completed the form for <strong>Better Result College</strong>.</p>
+        <p style="text-align: center; color: #666;">On clicking "Submit", your registration slip will be downloaded and you will be redirected to WhatsApp to complete your submission.</p>
+      </div>
+
+      <div class="step-buttons">
+        <button type="button" class="btn" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+        <button type="button" class="btn" id="nextBtn" onclick="nextPrev(1)">Next</button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<script>
+let currentTab = 0;
+const tabs = document.getElementsByClassName("tab");
+
+document.getElementById("startBtn").onclick = () => {
+  document.getElementById("hero").style.display = "none";
+  document.getElementById("formSection").style.display = "block";
+  showTab(currentTab);
+};
+
+function showTab(n) {
+  tabs[n].style.display = "block";
+  document.getElementById("prevBtn").style.display = n === 0 ? "none" : "inline";
+  document.getElementById("nextBtn").innerHTML = n === (tabs.length - 1) ? "Submit Final" : "Next";
+  
+  let pct = ((n + 1) / tabs.length) * 100;
+  document.getElementById("progressBar").style.width = pct + "%";
+}
+
+function nextPrev(n) {
+  if (n === 1 && !validateForm()) return false;
+
+  tabs[currentTab].style.display = "none";
+  currentTab += n;
+
+  if (currentTab >= tabs.length) {
+    generatePDFAndWhatsApp();
+    return false;
+  }
+  showTab(currentTab);
+}
+
+function validateForm() {
+  let valid = true;
+  let inputs = tabs[currentTab].querySelectorAll("input[required], select[required]");
+  inputs.forEach(input => {
+    if (!input.value) {
+      input.style.borderColor = "red";
+      valid = false;
+    } else {
+      input.style.borderColor = "#cbd4e1";
+    }
+  });
+  return valid;
+}
+
+document.getElementById("passport").addEventListener("change", function(){
+  const file = this.files[0];
+  if(file){
+    const reader = new FileReader();
+    reader.onload = function(){
+      const preview = document.getElementById("previewImg");
+      preview.src = reader.result;
+      preview.style.display = "block";
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+async function generatePDFAndWhatsApp() {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF();
+  const name = document.getElementById("name").value;
+
+  pdf.setFontSize(22);
+  pdf.setTextColor(13, 110, 253);
+  pdf.text("BETTER RESULT COLLEGE", 105, 20, {align: "center"});
+  
+  pdf.setFontSize(14);
+  pdf.setTextColor(100);
+  pdf.text(`Official Registration Slip`, 105, 30, {align: "center"});
+
+  pdf.setFontSize(12);
+  pdf.setTextColor(0);
+  let data = [
+    ["Name:", name],
+    ["DOB:", document.getElementById("dob").value],
+    ["Phone:", document.getElementById("phone").value],
+    ["Class:", document.getElementById("class").value],
+    ["Program:", document.getElementById("course").value],
+    ["State:", document.getElementById("state").value]
+  ];
+
+  let y = 50;
+  data.forEach(item => {
+    pdf.text(item[0], 20, y);
+    pdf.text(item[1], 70, y);
+    y += 10;
+  });
+
+  const img = document.getElementById("previewImg").src;
+  if(img && img.startsWith("data:image")) {
+    pdf.addImage(img, "JPEG", 150, 45, 40, 40);
+  }
+
+  pdf.save(`${name}_Registration.pdf`);
+
+  const schoolNum = "2349125802791";
+  const text = encodeURIComponent(
+    `*BETTER RESULT COLLEGE REGISTRATION*\n\n` +
+    `*Name:* ${name}\n` +
+    `*Class:* ${document.getElementById("class").value}\n` +
+    `*Phone:* ${document.getElementById("phone").value}\n\n` +
+    `_Registration slip downloaded. Application pending review._`
+  );
+
+  setTimeout(() => {
+    window.location.href = `https://wa.me/${schoolNum}?text=${text}`;
+  }, 1000);
+}
+</script>
+</body>
+</html>
+
