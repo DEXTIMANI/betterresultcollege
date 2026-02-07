@@ -142,22 +142,35 @@
             animation: fadeIn 0.3s ease-in-out;
         }
 
-        .modal-content h2 {
-            color: #0a3d62;
-            margin-bottom: 15px;
-        }
-
-        .modal-content p {
-            margin-bottom: 15px;
-            line-height: 1.7;
-        }
-
         .close-btn {
             position: absolute;
             top: 12px;
             right: 16px;
             font-size: 30px;
             cursor: pointer;
+        }
+
+        /* MODAL CONTACT INFO */
+        .modal-contact {
+            background: #f1f5f9;
+            border-left: 5px solid #0a3d62;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .modal-contact p {
+            margin: 6px 0;
+        }
+
+        .modal-contact a {
+            color: #0a3d62;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .modal-contact a:hover {
+            text-decoration: underline;
         }
 
         @keyframes fadeIn {
@@ -202,10 +215,9 @@
 
     <ul class="nav-links">
         <li><a href="#">Home</a></li>
-        <li><a id="aboutLink">About</a></li>
-        <li><a id="academicsLink">Academics</a></li>
-        <li><a href="#">Admissions</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#" id="aboutLink">About</a></li>
+        <li><a href="#" id="academicsLink">Academics</a></li>
+        <li><a href="#" id="contactLink">Contact</a></li>
     </ul>
 </nav>
 
@@ -218,17 +230,17 @@
     </div>
 </section>
 
-<!-- ABOUT (SHORT) -->
-<section class="about">
+<!-- ABOUT -->
+<section>
     <h2>About Our School</h2>
     <p>
-        Better Result College is committed to academic excellence, character development,
-        and a conducive learning environment supported by modern facilities.
+        Better Result College is committed to academic excellence,
+        character development, and a conducive learning environment.
     </p>
 </section>
 
 <!-- FACILITIES -->
-<section class="facilities">
+<section>
     <h2>Our Facilities</h2>
     <div class="facility-grid">
         <div class="card">
@@ -249,28 +261,10 @@
     </div>
 </section>
 
-<!-- ACADEMICS (ON PAGE) -->
-<section class="academics">
-    <h2>Academics</h2>
-    <p>
-        Our academic programme builds strong foundations and prepares students
-        for excellence in WAEC and NECO examinations.
-    </p>
-</section>
-
-<!-- NEWS -->
-<section class="news">
-    <h2>Latest News</h2>
-    <p><strong>📢 Admission Ongoing!</strong></p>
-    <p>Register now for the 2026 academic session.</p>
-</section>
-
 <!-- CTA -->
-<section class="cta">
-    <h2>Enroll Your Child <br> Or Yourself Today</h2>
-    <a href="waec.html" class="btn wide">
-        Register / Request Result for WAEC / NECO
-    </a>
+<section>
+    <h2>Enroll Today</h2>
+    <a href="waec.html" class="btn wide">Register / Request Result</a>
 </section>
 
 <footer>
@@ -281,9 +275,8 @@
 <div class="modal" id="aboutModal">
     <div class="modal-content">
         <span class="close-btn" data-close>&times;</span>
-        <h2>Better Results College: Nurturing Excellence Since 1993</h2>
-        <p>Established in 1993, Better Results College is a beacon of academic excellence...</p>
-        <p>We foster excellence, integrity, and faith, shaping future leaders.</p>
+        <h2>Better Result College</h2>
+        <p>Established in 1993, we nurture excellence and integrity.</p>
     </div>
 </div>
 
@@ -291,30 +284,38 @@
 <div class="modal" id="academicsModal">
     <div class="modal-content">
         <span class="close-btn" data-close>&times;</span>
+        <h2>Academics</h2>
+        <p>We prepare students for WAEC and NECO with excellence.</p>
+    </div>
+</div>
 
-        <h2>Academics at Better Result College</h2>
+<!-- CONTACT MODAL -->
+<div class="modal" id="contactModal">
+    <div class="modal-content">
+        <span class="close-btn" data-close>&times;</span>
 
+        <div class="modal-contact">
+            <p><strong>📍 Address:</strong><br>
+                No. 12 Osondu Street off Ọmụma Road (Achị Aroh Market), Aba,<br>
+                Abia State, Nigeria
+            </p>
+
+            <p><strong>📞 Phone:</strong><br>
+                <a href="tel:07025154760">0702 515 4760</a> |
+                <a href="tel:08068233364">0806 823 3364</a>
+            </p>
+
+            <p><strong>✉️ Email:</strong><br>
+                <a href="mailto:betterresultcollege1@gmail.com">
+                    betterresultcollege1@gmail.com
+                </a>
+            </p>
+        </div>
+
+        <h2>Contact Better Result College</h2>
         <p>
-            Our academic programme is structured to develop intellectual excellence,
-            discipline, confidence, and strong moral values through quality teaching.
-        </p>
-
-        <p><strong>Junior Secondary School (JSS)</strong></p>
-        <p>
-            Focused on foundational knowledge, creativity, critical thinking,
-            and positive study habits.
-        </p>
-
-        <p><strong>Senior Secondary School (SSS)</strong></p>
-        <p>
-            In-depth preparation aligned with WAEC and NECO syllabuses,
-            including career guidance and exam readiness.
-        </p>
-
-        <p><strong>WAEC & NECO Preparation</strong></p>
-        <p>
-            Intensive revision classes, mock exams, and personalized academic support
-            ensure outstanding results.
+            We are available to answer your questions on admissions
+            and academics during school hours.
         </p>
     </div>
 </div>
@@ -323,30 +324,43 @@
 <script>
     const aboutLink = document.getElementById("aboutLink");
     const academicsLink = document.getElementById("academicsLink");
+    const contactLink = document.getElementById("contactLink");
+
     const aboutModal = document.getElementById("aboutModal");
     const academicsModal = document.getElementById("academicsModal");
+    const contactModal = document.getElementById("contactModal");
+
+    function closeAll() {
+        aboutModal.style.display = "none";
+        academicsModal.style.display = "none";
+        contactModal.style.display = "none";
+    }
 
     aboutLink.onclick = e => {
         e.preventDefault();
+        closeAll();
         aboutModal.style.display = "block";
     };
 
     academicsLink.onclick = e => {
         e.preventDefault();
+        closeAll();
         academicsModal.style.display = "block";
     };
 
+    contactLink.onclick = e => {
+        e.preventDefault();
+        closeAll();
+        contactModal.style.display = "block";
+    };
+
     document.querySelectorAll("[data-close]").forEach(btn => {
-        btn.onclick = () => {
-            aboutModal.style.display = "none";
-            academicsModal.style.display = "none";
-        };
+        btn.onclick = closeAll;
     });
 
     window.onclick = e => {
         if (e.target.classList.contains("modal")) {
-            aboutModal.style.display = "none";
-            academicsModal.style.display = "none";
+            closeAll();
         }
     };
 </script>
