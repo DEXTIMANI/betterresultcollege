@@ -142,6 +142,16 @@
             animation: fadeIn 0.3s ease-in-out;
         }
 
+        .modal-content h2 {
+            color: #0a3d62;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
         .close-btn {
             position: absolute;
             top: 12px;
@@ -178,7 +188,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* FOOTER */
         footer {
             background: #0a3d62;
             color: white;
@@ -186,7 +195,6 @@
             text-align: center;
         }
 
-        /* MOBILE */
         @media (max-width: 600px) {
             .hero h1 {
                 font-size: 26px;
@@ -230,12 +238,13 @@
     </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ABOUT SHORT -->
 <section>
     <h2>About Our School</h2>
     <p>
         Better Result College is committed to academic excellence,
-        character development, and a conducive learning environment.
+        character development, and a conducive learning environment
+        supported by modern facilities.
     </p>
 </section>
 
@@ -263,29 +272,79 @@
 
 <!-- CTA -->
 <section>
-    <h2>Enroll Today</h2>
-    <a href="waec.html" class="btn wide">Register / Request Result</a>
+    <h2>Enroll Your Child Or Yourself Today</h2>
+    <a href="waec.html" class="btn wide">
+        Register / Request Result for WAEC / NECO
+    </a>
 </section>
 
 <footer>
     <p>© 2026 Better Result College</p>
 </footer>
 
-<!-- ABOUT MODAL -->
+<!-- ABOUT MODAL (UPDATED WITH YOUR TEXT) -->
 <div class="modal" id="aboutModal">
     <div class="modal-content">
         <span class="close-btn" data-close>&times;</span>
-        <h2>Better Result College</h2>
-        <p>Established in 1993, we nurture excellence and integrity.</p>
+
+        <h2>Better Results College: Nurturing Excellence Since 1993</h2>
+
+        <p>
+            Established in 1993, Better Results College is a beacon of academic
+            excellence, empowering students to achieve their full potential.
+            Our institution is renowned for guiding students to success in key
+            examinations, including WAEC and NECO exams.
+        </p>
+
+        <p>
+            At Better Results College, we don't just educate; we transform lives.
+            Our alumni are making waves in various fields, with accomplished
+            professionals in medicine, law, engineering, and beyond.
+        </p>
+
+        <p>
+            We are committed to fostering a culture of excellence, integrity,
+            and faith, shaping leaders who impact their communities and
+            the world.
+        </p>
+
+        <p>
+            <strong>Join the Better Results College family and unlock your potential!</strong>
+        </p>
     </div>
 </div>
 
-<!-- ACADEMICS MODAL -->
+<!-- ACADEMICS MODAL (UNCHANGED) -->
 <div class="modal" id="academicsModal">
     <div class="modal-content">
         <span class="close-btn" data-close>&times;</span>
-        <h2>Academics</h2>
-        <p>We prepare students for WAEC and NECO with excellence.</p>
+
+        <h2>Academics at Better Result College</h2>
+
+        <p>
+            Our academic programme is structured to develop intellectual
+            excellence, discipline, confidence, and strong moral values
+            through quality teaching and continuous assessment.
+        </p>
+
+        <p><strong>Junior Secondary School (JSS)</strong></p>
+        <p>
+            The JSS curriculum focuses on foundational knowledge, creativity,
+            critical thinking, and positive study habits across core subjects.
+        </p>
+
+        <p><strong>Senior Secondary School (SSS)</strong></p>
+        <p>
+            Our SSS programme offers in-depth preparation aligned with WAEC
+            and NECO syllabuses, supported by experienced teachers and
+            structured revision.
+        </p>
+
+        <p><strong>WAEC & NECO Preparation</strong></p>
+        <p>
+            Intensive revision classes, mock examinations, and personalized
+            academic support ensure outstanding examination performance.
+        </p>
     </div>
 </div>
 
@@ -314,8 +373,8 @@
 
         <h2>Contact Better Result College</h2>
         <p>
-            We are available to answer your questions on admissions
-            and academics during school hours.
+            We are always available to respond to inquiries about admissions,
+            academics, and general school information during official hours.
         </p>
     </div>
 </div>
@@ -330,7 +389,7 @@
     const academicsModal = document.getElementById("academicsModal");
     const contactModal = document.getElementById("contactModal");
 
-    function closeAll() {
+    function closeAllModals() {
         aboutModal.style.display = "none";
         academicsModal.style.display = "none";
         contactModal.style.display = "none";
@@ -338,29 +397,29 @@
 
     aboutLink.onclick = e => {
         e.preventDefault();
-        closeAll();
+        closeAllModals();
         aboutModal.style.display = "block";
     };
 
     academicsLink.onclick = e => {
         e.preventDefault();
-        closeAll();
+        closeAllModals();
         academicsModal.style.display = "block";
     };
 
     contactLink.onclick = e => {
         e.preventDefault();
-        closeAll();
+        closeAllModals();
         contactModal.style.display = "block";
     };
 
     document.querySelectorAll("[data-close]").forEach(btn => {
-        btn.onclick = closeAll;
+        btn.onclick = closeAllModals;
     });
 
     window.onclick = e => {
         if (e.target.classList.contains("modal")) {
-            closeAll();
+            closeAllModals();
         }
     };
 </script>
